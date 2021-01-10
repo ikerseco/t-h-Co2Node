@@ -4,7 +4,8 @@ const indexCtrl = require('../controlers/indexCtrl.js')
 
 
 
-//sokect 
+//sokect
+console.log("bai") 
 router.get("/index",indexCtrl.index)
 
 

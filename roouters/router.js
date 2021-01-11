@@ -1,12 +1,16 @@
 const express = require('express')
 const router = express.Router();
-const indexCtrl = require('../controlers/indexCtrl.js')
+const mongoCtrl = require('../controlers/mongoCtrl.js')
 
 
 
 //sokect
-console.log("bai") 
-router.get("/index",indexCtrl.index)
+router.post("/postMAC",mongoCtrl.postMAC)
+router.get("/getUser",mongoCtrl.oneUser)
+
+
+//web
+router.put("/postUser",mongoCtrl.postUser)
 
 
 

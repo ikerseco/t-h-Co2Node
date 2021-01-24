@@ -38,6 +38,15 @@ exports.userConprobator = (req,res,next)=>{
     })
 }
 
+exports.macConprobator = (req,res,next)=>{
+    let mac = req.body.mac
+    Arduinos.findOne({mac:mac},(err,data)=>{
+        if (err) return res.status(500).send({ message: 'Error al crear el mazo', err });
+        if (!data) return next()
+        res.status(200).send(data)
+    })
+}
+
 exports.oneUser = (req,res)=>{
     let gmail = req.body.gmail
     Arduinos.findOne({gmail:gmail},(err,data)=>{

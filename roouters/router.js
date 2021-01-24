@@ -5,7 +5,7 @@ const mongoCtrl = require('../controlers/mongoCtrl.js')
 
 
 //sokect
-router.post("/postMAC",mongoCtrl.postMAC)
+router.post("/postMAC",mongoCtrl.macConprobator,mongoCtrl.postMAC)
 router.get("/getUser",mongoCtrl.oneUser)
 
 

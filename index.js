@@ -43,10 +43,6 @@ app.use(function(req, res, next) {
 
 app.use(roouter)
 
-const arDAT = {
-  mac:"24:62:AB:C9:BB:F4",
-  user:"garrantsitsua@gmail.com"
-}
 
   const ArduinosAr = []
   //mqtt & tcp
@@ -72,11 +68,22 @@ const arDAT = {
         io.emit('initUser#get', 'ok soceckt')
       })*/
       //mqtt
+      //subcribe
+
       client.subscribe('arduino/mac', function (err) {
+        console.log("arduino/mac")
         if (!err) {
         // client.publish('arduino/mac', 'Hello mqtt')
         }
       })
+
+      client.subscribe('arduino/data', function (err) {
+        console.log("arduino/data")
+        if (!err) {
+        // client.publish('arduino/mac', 'Hello mqtt')
+        }
+      })
+
       client.on('message', function (topic, message) {
             context = message.toString();
             switch(topic){
@@ -86,6 +93,7 @@ const arDAT = {
                 console.log(topic)
                 axios.post('http://127.0.0.1:40001/postMAC',{mac:context}).then((dat)=>{
                   console.log("correcto")
+                  client.publish('arduino/24:62:AB:C9:BB:F4', 'Hello mqtt')
                 }).catch(function(err){
                   console.log("err")
                 })
@@ -94,6 +102,7 @@ const arDAT = {
                 console.log("arduino/data")
                 console.log(context)
                 console.log(topic)
+                client.publish('arduino/24:62:AB:C9:BB:F4', 'Hello mqtt')
                 break
             }
       })
